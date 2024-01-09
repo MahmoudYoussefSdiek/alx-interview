@@ -4,7 +4,7 @@ This script demonstrates the implementation of a lockbox problem.
 """
 
 
-def unlock_boxes(boxes):
+def canUnlockAll(boxes):
     """
     Unlock the given lockboxes.
 
