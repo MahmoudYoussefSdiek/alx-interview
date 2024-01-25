@@ -1,14 +1,23 @@
 #!/usr/bin/python3
+"""
+Script that takes in a log file and parses it line by line.
+"""
 import sys
 
 
 def print_stats(total_size, status_codes):
+    """
+    Prints statistics about the log file.
+    """
     print(f"File size: {total_size}")
     for code in sorted(status_codes):
         count = status_codes[code]
         print(f"{code}: {count}")
 
 def parse_line(line, total_size, status_codes):
+    """
+    Parses a line of the log file.
+    """
     try:
         parts = line.split()
         if len(parts) >= 7:
@@ -24,6 +33,9 @@ def parse_line(line, total_size, status_codes):
         return total_size, status_codes
 
 def main():
+    """
+    main function
+    """
     total_size = 0
     status_codes = {}
     line_count = 0
