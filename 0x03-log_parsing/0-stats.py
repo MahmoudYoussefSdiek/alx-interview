@@ -35,7 +35,7 @@ def parse_line(line, total_size, status_codes):
         return total_size, status_codes
 
 
-def main():
+def run():
     """
     main function
     """
@@ -57,4 +57,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    run()
