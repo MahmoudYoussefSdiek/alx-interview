@@ -14,6 +14,7 @@ def print_stats(total_size, status_codes):
         count = status_codes[code]
         print(f"{code}: {count}")
 
+
 def parse_line(line, total_size, status_codes):
     """
     Parses a line of the log file.
@@ -31,6 +32,7 @@ def parse_line(line, total_size, status_codes):
         return total_size, status_codes
     except ValueError:
         return total_size, status_codes
+
 
 def main():
     """
@@ -50,6 +52,7 @@ def main():
 
     except KeyboardInterrupt:
         print_stats(total_size, status_codes)
+
 
 if __name__ == "__main__":
     main()
