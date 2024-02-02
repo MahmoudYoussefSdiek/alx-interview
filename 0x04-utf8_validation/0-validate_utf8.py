@@ -23,4 +23,4 @@ def validUTF8(data):
             if (num >> 6) != 0b10:
                 return False
             count -= 1
-    return count == 0
+    return True
