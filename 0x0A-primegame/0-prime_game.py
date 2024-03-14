@@ -1,39 +1,28 @@
 #!/usr/bin/python3
 """
-Prime Game
+Prime game module.
 """
 
 
 def isWinner(x, nums):
     """
-    This function returns the prime game winner
+    Determines the winner of a prime game session with `x` rounds.
     """
-    def sieve(n):
-        primes = [True for _ in range(n + 1)]
-        primes[0] = primes[1] = False
-        p = 2
-        while p * p <= n:
-            if primes[p] is True:
-                for i in range(p * p, n + 1, p):
-                    primes[i] = False
-            p += 1
-        return primes
-
-    def play(n):
-        """
-        This function returns the name of the winner
-        """
-        primes = sieve(n)
-        count = sum(primes)
-        return 'Maria' if count % 2 == 1 else 'Ben'
-
-    scores = {'Maria': 0, 'Ben': 0}
-    for n in nums:
-        scores[play(n)] += 1
-
-    if scores['Maria'] > scores['Ben']:
-        return 'Maria'
-    elif scores['Maria'] < scores['Ben']:
-        return 'Ben'
-    else:
+    if x < 1 or not nums:
         return None
+    marias_wins, bens_wins = 0, 0
+    n = max(nums)
+    primes = [True for _ in range(1, n + 1, 1)]
+    primes[0] = False
+    for i, is_prime in enumerate(primes, 1):
+        if i == 1 or not is_prime:
+            continue
+        for j in range(i + i, n + 1, i):
+            primes[j - 1] = False
+    for _, n in zip(range(x), nums):
+        primes_count = len(list(filter(lambda x: x, primes[0: n])))
+        bens_wins += primes_count % 2 == 0
+        marias_wins += primes_count % 2 == 1
+    if marias_wins == bens_wins:
+        return None
+    return 'Maria' if marias_wins > bens_wins else 'Ben'
